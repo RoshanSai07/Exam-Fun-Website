@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Fun</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f7fb;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 36px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            color: #fff;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        input, button {
+            padding: 12px;
+            font-size: 18px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            width: 250px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            width: 200px;
+            border-radius: 8px;
+        }
+
+        button:active {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 20px;
+            color: whitesmoke;
+            font-weight: bold;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        #message.fadeIn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #message.fadeOut {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        /* Animation for smooth entry */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Exam Stress Relief</h1>
+    <p>Enter your exam name to receive a fun message!</p>
+    <input type="text" id="examName" placeholder="Enter exam name here" onkeydown="checkEnter(event)">
+    <button onclick="showFunnyMessage()">Get Message</button>
+    <div id="message" class="fadeOut"></div>
+
+    <script>
+        
+        window.onload = function() {
+        console.log("Page Loaded Successfully");
+        alert("Welcome to the Exam Fun website!");
+        };
+        // Function to check if Enter is pressed
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                showFunnyMessage();
+            }
+        }
+
+        // Function to show a random funny message based on the exam name
+        function showFunnyMessage() {
+            const examName = document.getElementById('examName').value.trim().toLowerCase(); // Convert to lowercase for case-insensitive comparison
+            const validExams = ['cse', 'python', 'ece', 'math', 'mathematics', 'maths', 'phy', 'physics', 'eng', 'english', 'sts','chemistry','chem'];
+            const messages = [
+                "Potaru mottam potaru",
+                "Emundile poduko",
+                "Evi emi aya panulla kanapadatledu paiga physical ga mental ga strainu",
+                "Eat Five Star, Do Nothing!",
+                "Pass aithe party, fail aithe mallii party!",
+                "Inka chadavataniki time ledu… kani khaaligaa bhayapadataniki chaala time undi!",
+                "Paper easy ante 'Life settle', kashtam ante 'Night over!'"
+            ];
+
+            const messageDiv = document.getElementById('message');
+
+            if (!examName) {
+                messageDiv.textContent = "Please enter an exam name!";
+                messageDiv.classList.remove('fadeOut');
+                messageDiv.classList.add('fadeIn');
+            } else if (validExams.includes(examName)) {
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                messageDiv.textContent = randomMessage;
+                messageDiv.classList.remove('fadeOut');
+                messageDiv.classList.add('fadeIn');
+            } else {
+                messageDiv.textContent = "Please enter a valid exam name (e.g., CSE, Python, ECE, Math, Physics, etc.)!";
+                messageDiv.classList.remove('fadeOut');
+                messageDiv.classList.add('fadeIn');
+            }
+        }
+    </script>
+    <button onclick="confirmAccess()">I have accessed the website!</button>
+    <script>
+        function confirmAccess() {
+            alert("Thank you for confirming your access!");
+        }
+    </script>
+</body>
+</html>
